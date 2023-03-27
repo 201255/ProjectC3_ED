@@ -61,8 +61,12 @@ public class Main {
     }
 
     private static void agregarElementos(Scanner sc) {
-        System.out.print("\nIngrese la descripción del elemento: ");
+        while(true){  
+        System.out.print("\nIngrese la descripción del elemento (o '1' para salir): ");
         String descripcion = sc.nextLine();
+        if(descripcion.equals("1")){
+            break;
+        }
 
         if (mapUtilEscolar.containsKey(descripcion.toUpperCase())) {
             System.out.println("El elemento ya existe en la lista de pendientes.");
@@ -79,22 +83,26 @@ public class Main {
 
         System.out.println("Elemento agregado correctamente.");
     }
+    }
 
     private static void modificarPendientes(Scanner sc) {
         if (listaUtilEscolar.isEmpty()) {
             System.out.println("La lista de pendientes está vacía.");
             return;
         }
-
+        while(true){ 
         System.out.println("\nElija el elemento a modificar: ");
 
         for (int i = 0; i < listaUtilEscolar.size(); i++) {
             System.out.println((i+1) + ". " + listaUtilEscolar.get(i).obtenerDescripcionYPendiente());
         }
 
-        System.out.print("\nIngrese el número correspondiente al elemento: ");
+        System.out.print("\nIngrese el número correspondiente al elemento (o '0' para salir): ");
         int opcion = sc.nextInt();
         sc.nextLine();
+        if(opcion==0){
+            break;
+        }
 
         if (opcion < 1 || opcion > listaUtilEscolar.size()) {
             System.out.println("Opción no válida.");
@@ -112,6 +120,7 @@ public class Main {
         utilEscolar.modificarCantidadComprada(cantidad);
 
         System.out.println("Cantidad comprada actualizada correctamente.");
+        }
     }
 
     private static void buscarElemento(Scanner sc) {
@@ -120,8 +129,12 @@ public class Main {
             return;
         }
 
-        System.out.print("\nIngrese la descripción del elemento a buscar: ");
+        while(true){ 
+        System.out.print("\nIngrese la descripción del elemento a buscar (o '1' para salir): ");
         String descripcion = sc.nextLine();
+        if(descripcion.equals("1")){
+            break;
+        }
 
         UtilEscolar utilEscolar = mapUtilEscolar.get(descripcion.toUpperCase());
 
@@ -137,6 +150,7 @@ public class Main {
         }
 
         System.out.println("\n" + mensaje);
+        }
     }
 
     private static void eliminarElemento(Scanner sc) {
@@ -144,16 +158,21 @@ public class Main {
             System.out.println("La lista de pendientes está vacía.");
             return;
         }
-
+        while (true) {
         System.out.println("\nElija el elemento a eliminar: ");
 
         for (int i = 0; i < listaUtilEscolar.size(); i++) {
             System.out.println((i+1) + ". " + listaUtilEscolar.get(i).obtenerDescripcionYPendiente());
         }
 
-        System.out.print("\nIngrese el número correspondiente al elemento: ");
+       
+        
+        System.out.print("\nIngrese el número correspondiente al elemento (o '0' para salir): ");
         int opcion = sc.nextInt();
         sc.nextLine();
+        if (opcion ==0){
+            break;
+        }
 
         if (opcion < 1 || opcion > listaUtilEscolar.size()) {
             System.out.println("Opción no válida.");
@@ -166,6 +185,7 @@ public class Main {
         mapUtilEscolar.remove(utilEscolar.getDescripcion());
 
         System.out.println("Elemento eliminado correctamente.");
+        }
     }
 
 private static void ordenarElementos() {
